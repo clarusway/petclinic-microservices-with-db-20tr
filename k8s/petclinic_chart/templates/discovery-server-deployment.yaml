@@ -4,6 +4,9 @@ metadata:
   annotations:
     kompose.cmd: kompose convert -f compose.yml -o petclinic_chart/templates
     kompose.image-pull-secret: regcred
+    kompose.init.containers.command: '''sh'', ''-c'', ''until nc -z config-server:8888; do echo waiting for config-server; sleep 2; done;'''
+    kompose.init.containers.image: busybox
+    kompose.init.containers.name: init-config-server
     kompose.version: 1.37.0 (fb0539e64)
   labels:
     io.kompose.service: discovery-server
@@ -18,6 +21,9 @@ spec:
       annotations:
         kompose.cmd: kompose convert -f compose.yml -o petclinic_chart/templates
         kompose.image-pull-secret: regcred
+        kompose.init.containers.command: '''sh'', ''-c'', ''until nc -z config-server:8888; do echo waiting for config-server; sleep 2; done;'''
+        kompose.init.containers.image: busybox
+        kompose.init.containers.name: init-config-server
         kompose.version: 1.37.0 (fb0539e64)
       labels:
         io.kompose.service: discovery-server
@@ -30,4 +36,11 @@ spec:
               protocol: TCP
       imagePullSecrets:
         - name: regcred
+      initContainers:
+        - command:
+            - sh
+            - -c
+            - until nc -z config-server:8888; do echo waiting for config-server; sleep 2; done;
+          image: busybox
+          name: init-config-server
       restartPolicy: Always

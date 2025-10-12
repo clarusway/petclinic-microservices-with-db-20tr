@@ -13,7 +13,7 @@ services:
       kompose.image-pull-secret: "regcred"
       kompose.init.containers.name: "init-config-server"
       kompose.init.containers.image: busybox
-      kompose.init.containers.command: ['sh', '-c', 'until nc -z config-server:8888; do echo waiting for config-server; sleep 2; done;']
+      kompose.init.containers.command: "'sh', '-c', 'until nc -z config-server:8888; do echo waiting for config-server; sleep 2; done;'"
 
   customers-service:
     image: "{{ .Values.IMAGE_TAG_CUSTOMERS_SERVICE }}"
@@ -25,7 +25,7 @@ services:
       kompose.image-pull-secret: "regcred"
       kompose.init.containers.name: "init-discovery-server"
       kompose.init.containers.image: busybox
-      kompose.init.containers.command: ['sh', '-c', 'until nc -z discovery-server:8761; do echo waiting for discovery-server; sleep 2; done;']
+      kompose.init.containers.command: "'sh', '-c', 'until nc -z discovery-server:8761; do echo waiting for discovery-server; sleep 2; done;'"
       
   visits-service:
     image: "{{ .Values.IMAGE_TAG_VISITS_SERVICE }}"
@@ -37,7 +37,7 @@ services:
       kompose.image-pull-secret: "regcred"
       kompose.init.containers.name: "init-discovery-server"
       kompose.init.containers.image: busybox
-      kompose.init.containers.command: ['sh', '-c', 'until nc -z discovery-server:8761; do echo waiting for discovery-server; sleep 2; done;']
+      kompose.init.containers.command: "'sh', '-c', 'until nc -z discovery-server:8761; do echo waiting for discovery-server; sleep 2; done;'"
 
   vets-service:
     image: "{{ .Values.IMAGE_TAG_VETS_SERVICE }}"
@@ -49,7 +49,7 @@ services:
       kompose.image-pull-secret: "regcred"
       kompose.init.containers.name: "init-discovery-server"
       kompose.init.containers.image: busybox
-      kompose.init.containers.command: ['sh', '-c', 'until nc -z discovery-server:8761; do echo waiting for discovery-server; sleep 2; done;']
+      kompose.init.containers.command: "'sh', '-c', 'until nc -z discovery-server:8761; do echo waiting for discovery-server; sleep 2; done;'"
 
   api-gateway:
     image: "{{ .Values.IMAGE_TAG_API_GATEWAY }}"
@@ -65,7 +65,7 @@ services:
       kompose.service.nodeport.port: "30001"
       kompose.init.containers.name: "init-discovery-server"
       kompose.init.containers.image: busybox
-      kompose.init.containers.command: ['sh', '-c', 'until nc -z discovery-server:8761; do echo waiting for discovery-server; sleep 2; done;']
+      kompose.init.containers.command: "'sh', '-c', 'until nc -z discovery-server:8761; do echo waiting for discovery-server; sleep 2; done;'"
 
   tracing-server:
     image: openzipkin/zipkin
@@ -79,7 +79,7 @@ services:
       kompose.image-pull-secret: "regcred"
       kompose.init.containers.name: "init-discovery-server"
       kompose.init.containers.image: busybox
-      kompose.init.containers.command: ['sh', '-c', 'until nc -z discovery-server:8761; do echo waiting for discovery-server; sleep 2; done;']
+      kompose.init.containers.command: "'sh', '-c', 'until nc -z discovery-server:8761; do echo waiting for discovery-server; sleep 2; done;'"
 
   hystrix-dashboard:
     image: "{{ .Values.IMAGE_TAG_HYSTRIX_DASHBOARD }}"
@@ -89,7 +89,7 @@ services:
       kompose.image-pull-secret: "regcred"
       kompose.init.containers.name: "init-discovery-server"
       kompose.init.containers.image: busybox
-      kompose.init.containers.command: ['sh', '-c', 'until nc -z discovery-server:8761; do echo waiting for discovery-server; sleep 2; done;']
+      kompose.init.containers.command: "'sh', '-c', 'until nc -z discovery-server:8761; do echo waiting for discovery-server; sleep 2; done;'"
 
   grafana-server:
     image: "{{ .Values.IMAGE_TAG_GRAFANA_SERVICE }}"
